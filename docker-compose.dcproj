@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>d0b31578-0dfd-41db-b1b8-067362d19b21</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/weatherforecast</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/payments</DockerServiceUrl>
     <DockerServiceName>checkout.paymentgateway.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
