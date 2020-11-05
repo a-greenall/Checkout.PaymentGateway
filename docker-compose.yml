@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  checkout.paymentgateway.api:
+    image: ${DOCKER_REGISTRY-}checkoutpaymentgatewayapi
+    build:
+      context: .
+      dockerfile: Checkout.PaymentGateway.Api/Dockerfile
