@@ -14,7 +14,7 @@ namespace Checkout.PaymentGateway.Domain
         public string Number { get; }
         public int ExpiryMonth { get; }
         public int ExpiryYear { get; }
-        public string CVV { get; }
+        public string Cvv { get; }
 
         public Card(
             string number,
@@ -26,7 +26,7 @@ namespace Checkout.PaymentGateway.Domain
             Number = ValidateCardNumber(number);
             ExpiryMonth = ValidateExpiryMonth(expiryMonth);
             ExpiryYear = ValidateExpiryYear(expiryYear);
-            CVV = ValidateCvv(cvv);
+            Cvv = ValidateCvv(cvv);
         }
 
         private string ValidateCardNumber(string number)
@@ -50,7 +50,7 @@ namespace Checkout.PaymentGateway.Domain
 
         private int ValidateExpiryYear(int expiryYear)
         {
-            if (expiryYear < 2020 || expiryYear > 9999)
+            if (expiryYear < 1 || expiryYear > 99)
                 throw new ArgumentOutOfRangeException(nameof(expiryYear));
 
             return expiryYear;
@@ -73,7 +73,7 @@ namespace Checkout.PaymentGateway.Domain
             yield return Number;
             yield return ExpiryMonth;
             yield return ExpiryYear;
-            yield return CVV;
+            yield return Cvv;
         }
     }
 }

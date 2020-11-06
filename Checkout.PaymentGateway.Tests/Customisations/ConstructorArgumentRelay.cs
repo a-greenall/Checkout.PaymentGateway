@@ -23,9 +23,6 @@ namespace Checkout.PaymentGateway.Tests.Customisations
             if (!(request is ParameterInfo parameter))
                 return new NoSpecimen();
 
-            var isCard = parameter.Name == "card";
-
-
             if (parameter.Member.DeclaringType != typeof(TTarget) ||
                 parameter.Member.MemberType != MemberTypes.Constructor ||
                 parameter.ParameterType != typeof(TValueType) ||

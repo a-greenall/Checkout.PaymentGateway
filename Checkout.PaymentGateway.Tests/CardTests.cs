@@ -83,13 +83,13 @@ namespace Checkout.PaymentGateway.Tests
         }
 
         [Fact]
-        public void Not_allow_expiry_year_greater_than_9999()
+        public void Not_allow_expiry_year_greater_than_99()
         {
             var fixture = new Fixture();
 
             fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
-            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 12345);
+            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 100);
 
             Action act = () => fixture.Create<Card>();
 
@@ -100,13 +100,13 @@ namespace Checkout.PaymentGateway.Tests
         }
 
         [Fact]
-        public void Not_allow_expiry_year_less_than_2020()
+        public void Not_allow_expiry_year_less_than_1()
         {
             var fixture = new Fixture();
 
             fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
-            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 2019);
+            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 0);
 
             Action act = () => fixture.Create<Card>();
 
@@ -123,7 +123,7 @@ namespace Checkout.PaymentGateway.Tests
 
             fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
-            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 2021);
+            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 20);
             fixture.ConstructorArgumentFor<Card, string>("cvv", "00");
 
             Action act = () => fixture.Create<Card>();
@@ -141,7 +141,7 @@ namespace Checkout.PaymentGateway.Tests
 
             fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
-            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 2021);
+            fixture.ConstructorArgumentFor<Card, int>("expiryYear", 20);
             fixture.ConstructorArgumentFor<Card, string>("cvv", "0000");
 
             Action act = () => fixture.Create<Card>();

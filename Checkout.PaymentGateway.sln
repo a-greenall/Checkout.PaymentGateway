@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{AFA0ED
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Extensions", "Checkout.PaymentGateway.Extensions\Checkout.PaymentGateway.Extensions.csproj", "{559D1F58-AF7A-4C40-BE15-63D7171B3370}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Attributes", "Checkout.PaymentGateway.Attributes\Checkout.PaymentGateway.Attributes.csproj", "{1D7F92B0-F882-4481-BDAF-F1B8937ABA19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,12 +43,17 @@ Global
 		{559D1F58-AF7A-4C40-BE15-63D7171B3370}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{559D1F58-AF7A-4C40-BE15-63D7171B3370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{559D1F58-AF7A-4C40-BE15-63D7171B3370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7F92B0-F882-4481-BDAF-F1B8937ABA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7F92B0-F882-4481-BDAF-F1B8937ABA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7F92B0-F882-4481-BDAF-F1B8937ABA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7F92B0-F882-4481-BDAF-F1B8937ABA19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{559D1F58-AF7A-4C40-BE15-63D7171B3370} = {AFA0ED7D-5B29-4949-9594-6801C840C5BA}
+		{1D7F92B0-F882-4481-BDAF-F1B8937ABA19} = {AFA0ED7D-5B29-4949-9594-6801C840C5BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6DBF306-BE3B-48DE-B7FB-01E5556D7406}
