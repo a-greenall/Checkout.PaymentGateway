@@ -2,7 +2,7 @@
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Checkout.PaymentGateway.Api.Controllers
+namespace Checkout.PaymentGateway.Api.Payments
 {
     [Route("api/payments")]
     [ApiController]
