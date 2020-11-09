@@ -2,6 +2,7 @@
 using Checkout.PaymentGateway.Api.Infrastructure;
 using Checkout.PaymentGateway.Api.Payments;
 using Checkout.PaymentGateway.Domain;
+using Checkout.PaymentGateway.Extensions;
 using FluentAssertions;
 using Xunit;
 
@@ -17,7 +18,7 @@ namespace Checkout.PaymentGateway.Tests
         }
 
         [Fact]
-        public void Mapping_between_payment_request_and_payment_is_correct()
+        public void Correctly_map_payment_request_to_payment()
         {
             var config = new MapperConfiguration(cfg => cfg.AddProfile<PaymentMappingProfile>());
             var mapper = config.CreateMapper();
@@ -42,7 +43,7 @@ namespace Checkout.PaymentGateway.Tests
         }
 
         [Fact]
-        public void Mapping_between_payment_and_payment_response_is_correct()
+        public void Correctly_map_payment_request_to_payment_response()
         {
             var config = new MapperConfiguration(cfg => cfg.AddProfile<PaymentMappingProfile>());
             var mapper = config.CreateMapper();
@@ -53,7 +54,7 @@ namespace Checkout.PaymentGateway.Tests
             var dto = mapper.Map<Payment, PaymentResponseDto>(payment);
 
             dto.Amount.Should().Be(payment.Amount.Amount);
-            dto.CardNumber.Should().Be(payment.Card.Number);
+            dto.CardNumber.Should().Be(payment.Card.Number.Mask(4, '*'));
             dto.CurrencySymbol.Should().Be(payment.Amount.CurrencySymbol);
             dto.Cvv.Should().Be(payment.Card.Cvv);
             dto.ExpiryMonth.Should().Be(payment.Card.ExpiryMonth);

@@ -10,6 +10,7 @@ namespace Checkout.PaymentGateway.Attributes
             if (!(value is char @char))
                 return false;
 
+            // Just considering these three as examples for now.
             return new[] { '£', '$', '€' }.Contains(@char);
         }
     }
