@@ -1,5 +1,6 @@
 using AutoMapper;
-using Checkout.PaymentGateway.Api.Payments;
+using Checkout.PaymentGateway.Api.Application;
+using Checkout.PaymentGateway.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +23,8 @@ namespace Checkout.PaymentGateway.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configure<PaymentDbSettings>(Configuration.GetSection("PaymentDb"));
+            services.AddSingleton<IPaymentContext, PaymentContext>();
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(Startup));
             services.AddScoped<IBankingService, MockBankingService>();

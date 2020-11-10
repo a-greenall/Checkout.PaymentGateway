@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Checkout.PaymentGateway.Api.Application;
 using Checkout.PaymentGateway.Api.Infrastructure;
-using Checkout.PaymentGateway.Api.Payments;
 using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Extensions;
 using FluentAssertions;

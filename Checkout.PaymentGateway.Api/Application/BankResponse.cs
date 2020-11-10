@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Checkout.PaymentGateway.Api.Payments
+namespace Checkout.PaymentGateway.Api.Application
 {
     public class BankResponse<T>
     {

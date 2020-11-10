@@ -1,7 +1,7 @@
 ﻿using Checkout.PaymentGateway.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace Checkout.PaymentGateway.Api.Payments
+namespace Checkout.PaymentGateway.Api.Application
 {
     /// <summary>
     /// Represents a payment request.

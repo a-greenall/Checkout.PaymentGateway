@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Checkout.PaymentGateway.Api.Payments
+namespace Checkout.PaymentGateway.Api.Application
 {
     /// <summary>
     /// Represents a payment response.
