@@ -12,7 +12,7 @@ namespace Checkout.PaymentGateway.Api.Application
     /// <summary>
     /// Command used to send a payment request.
     /// </summary>
-    public class SendPaymentRequest : IRequest<bool>
+    public class SendPaymentRequest : IRequest<PaymentRequestResponseDto>
     {
         public PaymentRequestDto PaymentRequest { get; set; }
     }
@@ -20,11 +20,11 @@ namespace Checkout.PaymentGateway.Api.Application
     /// <summary>
     /// Handler for the <see cref="SendPaymentRequest"/> command.
     /// </summary>
-    public class SendPaymentRequestHandler : IRequestHandler<SendPaymentRequest, bool>
+    public class SendPaymentRequestHandler : IRequestHandler<SendPaymentRequest, PaymentRequestResponseDto>
     {
-        private IBankingService _bankingService;
-        private IMapper _mapper;
-        private IPaymentContext _context;
+        private readonly IBankingService _bankingService;
+        private readonly IMapper _mapper;
+        private readonly IPaymentContext _context;
 
         public SendPaymentRequestHandler(
             IBankingService bankingService,
@@ -36,7 +36,7 @@ namespace Checkout.PaymentGateway.Api.Application
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<bool> Handle(SendPaymentRequest request, CancellationToken cancellationToken)
+        public async Task<PaymentRequestResponseDto> Handle(SendPaymentRequest request, CancellationToken cancellationToken)
         {
             // Submit the payment to the banking service.
             var submission = _bankingService.SubmitPayment(request.PaymentRequest);
@@ -45,10 +45,15 @@ namespace Checkout.PaymentGateway.Api.Application
             var payment = _mapper.Map<Payment>(request.PaymentRequest);
             payment.Id = submission.Response;
 
-            // Insert the payment
+            // Insert the payment into to database
             await _context.InsertAsync(payment, cancellationToken);
 
-            return submission.StatusCode == HttpStatusCode.OK;
+            // Return the reponse
+            return new PaymentRequestResponseDto
+            {
+                PaymentId = payment.Id,
+                SubmittedSuccessfully = submission.StatusCode == HttpStatusCode.OK
+            };
         }
     }
 }

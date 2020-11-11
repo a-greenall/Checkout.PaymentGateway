@@ -71,7 +71,7 @@ namespace Checkout.PaymentGateway.Tests
         }
 
         [Fact]
-        public async Task Return_true_if_bank_service_submission_successful()
+        public async Task Return_successful_response_if_bank_service_submission_successful()
         {
             var fixture = new Fixture().Customize(new AutoMoqCustomization());
 
@@ -105,11 +105,12 @@ namespace Checkout.PaymentGateway.Tests
 
             var result = await handler.Handle(command, default);
 
-            result.Should().BeTrue();
+            result.SubmittedSuccessfully.Should().BeTrue();
+            result.PaymentId.Should().Be(paymentId);
         }
 
         [Fact]
-        public async Task Return_false_if_bank_service_submission_unsuccessful()
+        public async Task Return_unsuccessful_respone_if_bank_service_submission_unsuccessful()
         {
             var fixture = new Fixture().Customize(new AutoMoqCustomization());
 
@@ -143,7 +144,8 @@ namespace Checkout.PaymentGateway.Tests
 
             var result = await handler.Handle(command, default);
 
-            result.Should().BeFalse();
+            result.SubmittedSuccessfully.Should().BeFalse();
+            result.PaymentId.Should().Be(paymentId);
         }
     }
 }

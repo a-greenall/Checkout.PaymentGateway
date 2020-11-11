@@ -22,8 +22,8 @@ namespace Checkout.PaymentGateway.Api.Application
     /// </summary>
     public class GetPaymentHandler : IRequestHandler<GetPayment, PaymentResponseDto>
     {
-        private IMapper _mapper;
-        private IPaymentContext _context;
+        private readonly IMapper _mapper;
+        private readonly IPaymentContext _context;
 
         public GetPaymentHandler(
             IMapper mapper,
