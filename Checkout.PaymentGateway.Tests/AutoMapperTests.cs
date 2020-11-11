@@ -26,7 +26,7 @@ namespace Checkout.PaymentGateway.Tests
             {
                 Amount = 999,
                 CardNumber = "1122334455667788",
-                CurrencySymbol = '£',
+                Currency = "GBP",
                 Cvv = "123",
                 ExpiryMonth = 6,
                 ExpiryYear = 25
@@ -35,7 +35,7 @@ namespace Checkout.PaymentGateway.Tests
             var payment = mapper.Map<PaymentRequestDto, Payment>(dto);
 
             payment.Amount.Amount.Should().Be(dto.Amount);
-            payment.Amount.CurrencySymbol.Should().Be(dto.CurrencySymbol);
+            payment.Amount.Currency.Should().Be(dto.Currency);
             payment.Card.Cvv.Should().Be(dto.Cvv);
             payment.Card.ExpiryMonth.Should().Be(dto.ExpiryMonth);
             payment.Card.ExpiryYear.Should().Be(dto.ExpiryYear);
@@ -49,13 +49,13 @@ namespace Checkout.PaymentGateway.Tests
             var mapper = config.CreateMapper();
             var payment = new Payment(
                 new Card("1122334455667788", 6, 25, "123"),
-                new Money('£', 123));
+                new Money("USD", 123));
 
             var dto = mapper.Map<Payment, PaymentResponseDto>(payment);
 
             dto.Amount.Should().Be(payment.Amount.Amount);
             dto.CardNumber.Should().Be(payment.Card.Number.Mask(4, '*'));
-            dto.CurrencySymbol.Should().Be(payment.Amount.CurrencySymbol);
+            dto.Currency.Should().Be(payment.Amount.Currency);
             dto.Cvv.Should().Be(payment.Card.Cvv);
             dto.ExpiryMonth.Should().Be(payment.Card.ExpiryMonth);
             dto.ExpiryYear.Should().Be(payment.Card.ExpiryYear);

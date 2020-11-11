@@ -22,5 +22,15 @@ namespace Checkout.PaymentGateway.Extensions
 
             return unmaskedStr + maskedStr;
         }
+
+        /// <summary>
+        /// Checks whether the provided string is a valid currency code.
+        /// </summary>
+        /// <param name="str">The string to check.</param>
+        public static bool IsCurrencyCode(this string str)
+        {
+            // Only considering 3 currency codes for demo purposes.
+            return new[] { "GBP", "USD", "EUR" }.Contains(str);
+        }
     }
 }

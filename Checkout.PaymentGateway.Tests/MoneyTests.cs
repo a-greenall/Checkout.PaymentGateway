@@ -10,18 +10,18 @@ namespace Checkout.PaymentGateway.Tests
     public class MoneyTests
     {
         [Fact]
-        public void Not_allow_non_currency_symbol()
+        public void Not_allow_non_currency_code()
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Money, char>("currencySymbol", '!');
+            fixture.ConstructorArgumentFor<Money, string>("currency", "OMG");
 
             Action act = () => fixture.Create<Money>();
 
             act.Should().Throw<Exception>()
                 .WithInnerException<Exception>()
                 .WithInnerException<ArgumentOutOfRangeException>()
-                .And.ParamName.Should().Be("currencySymbol");
+                .And.ParamName.Should().Be("currency");
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Money, char>("currencySymbol", '£');
+            fixture.ConstructorArgumentFor<Money, string>("currency", "USD");
             fixture.ConstructorArgumentFor<Money, decimal>("amount", 0);
 
             Action act = () => fixture.Create<Money>();
@@ -45,7 +45,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Money, char>("currencySymbol", '£');
+            fixture.ConstructorArgumentFor<Money, string>("currency", "USD");
             fixture.ConstructorArgumentFor<Money, decimal>("amount", -999);
 
             Action act = () => fixture.Create<Money>();

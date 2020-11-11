@@ -25,8 +25,8 @@ namespace Checkout.PaymentGateway.Api.Application
         public string Cvv { get; set; }
 
         [Required]
-        [CurrencySymbol]
-        public char CurrencySymbol { get; set; }
+        [CurrencyCode]
+        public string Currency { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue)]

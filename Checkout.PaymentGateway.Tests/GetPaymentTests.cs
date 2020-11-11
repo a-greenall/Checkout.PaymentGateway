@@ -35,11 +35,8 @@ namespace Checkout.PaymentGateway.Tests
             // Arrange the payment
             var paymentId = fixture.Freeze<Guid>();
             var card = new Card("1122334455667788", 12, 20, "123");
-            var amount = new Money('£', 123);
-            var payment = new Payment(card, amount)
-            {
-                Id = paymentId
-            };
+            var amount = new Money("EUR", 123);
+            var payment = new Payment(card, amount, paymentId);
 
             // Arrange the payment context
             var mockPaymentContext = new Mock<IPaymentContext>();

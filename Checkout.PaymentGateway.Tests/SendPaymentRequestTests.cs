@@ -38,7 +38,7 @@ namespace Checkout.PaymentGateway.Tests
             {
                 Amount = 999,
                 CardNumber = "1122334455667788",
-                CurrencySymbol = '£',
+                Currency = "GBP",
                 Cvv = "123",
                 ExpiryMonth = 6,
                 ExpiryYear = 25
@@ -80,7 +80,7 @@ namespace Checkout.PaymentGateway.Tests
             {
                 Amount = 999,
                 CardNumber = "1122334455667788",
-                CurrencySymbol = '£',
+                Currency = "USD",
                 Cvv = "123",
                 ExpiryMonth = 6,
                 ExpiryYear = 25
@@ -119,7 +119,7 @@ namespace Checkout.PaymentGateway.Tests
             {
                 Amount = 999,
                 CardNumber = "1122334455667788",
-                CurrencySymbol = '£',
+                Currency = "EUR",
                 Cvv = "123",
                 ExpiryMonth = 6,
                 ExpiryYear = 25

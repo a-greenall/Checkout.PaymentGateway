@@ -39,11 +39,13 @@ namespace Checkout.PaymentGateway.Api.Application
         public async Task<PaymentRequestResponseDto> Handle(SendPaymentRequest request, CancellationToken cancellationToken)
         {
             // Submit the payment to the banking service.
-            var submission = _bankingService.SubmitPayment(request.PaymentRequest);
+            var bankResponse = _bankingService.SubmitPayment(request.PaymentRequest);
 
             // Map the request to the entity type
             var payment = _mapper.Map<Payment>(request.PaymentRequest);
-            payment.Id = submission.Response;
+            payment.UpdateFromBankResponse(bankResponse.Response, bankResponse.StatusCode == HttpStatusCode.OK);
+
+            // TODO - encrypt card number
 
             // Insert the payment into to database
             await _context.InsertAsync(payment, cancellationToken);
@@ -52,7 +54,7 @@ namespace Checkout.PaymentGateway.Api.Application
             return new PaymentRequestResponseDto
             {
                 PaymentId = payment.Id,
-                SubmittedSuccessfully = submission.StatusCode == HttpStatusCode.OK
+                SubmittedSuccessfully = payment.SubmittedSuccessfully
             };
         }
     }

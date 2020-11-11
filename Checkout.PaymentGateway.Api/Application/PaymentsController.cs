@@ -18,7 +18,7 @@ namespace Checkout.PaymentGateway.Api.Application
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PaymentsController : ControllerBase
     {
         private readonly IMediator _mediator;

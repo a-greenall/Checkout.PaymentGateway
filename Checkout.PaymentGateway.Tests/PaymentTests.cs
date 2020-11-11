@@ -15,7 +15,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
             var card = new Card("1122334455667788", 12, 20, "123");
-            var amount = new Money('£', 123);
+            var amount = new Money("GBP", 123);
             fixture.Inject(card);
             fixture.Inject(amount);
 

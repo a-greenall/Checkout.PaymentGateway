@@ -33,6 +33,7 @@ namespace Checkout.PaymentGateway.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
             services
                 .AddMongoClassMaps()
                 .AddApiKeyAuthentication()
@@ -42,10 +43,7 @@ namespace Checkout.PaymentGateway.Api
                 .Configure<PaymentDbSettings>(Configuration.GetSection("PaymentDb"))
                 .AddSingleton<IPaymentContext, PaymentContext>()
                 .AddScoped<IBankingService, MockBankingService>()
-                .AddSwagger()
-                .AddControllers();
-
-            
+                .AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +53,10 @@ namespace Checkout.PaymentGateway.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/error/error");
+            }
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -63,7 +65,6 @@ namespace Checkout.PaymentGateway.Api
             });
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -90,7 +91,7 @@ namespace Checkout.PaymentGateway.Api
                 map.AutoMap();
                 map.MapProperty(p => p.Card);
                 map.MapProperty(p => p.Amount);
-                map.MapCreator(p => new Payment(p.Card, p.Amount));
+                map.MapCreator(p => new Payment(p.Card, p.Amount, p.Id));
             });
 
             return sc;

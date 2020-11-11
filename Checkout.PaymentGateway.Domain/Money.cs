@@ -5,23 +5,33 @@ using Checkout.PaymentGateway.Extensions;
 
 namespace Checkout.PaymentGateway.Domain
 {
+    /// <summary>
+    /// Encapsulates both the currency the value of an amount of money.
+    /// </summary>
     public class Money : ValueObject
     {
-        public char CurrencySymbol { get; }
+        /// <summary>
+        /// A currency code.
+        /// </summary>
+        public string Currency { get; }
+
+        /// <summary>
+        /// An amount of money.
+        /// </summary>
         public decimal Amount { get; }
 
         public Money(
-            char currencySymbol,
+            string currency,
             decimal amount)
         {
             // In a real-world application, you would want more extensive validation here e.g. whether the amount exceeds any payment limits.
-            CurrencySymbol = currencySymbol.IsCurrencySymbol() ? currencySymbol : throw new ArgumentOutOfRangeException(nameof(currencySymbol));
+            Currency = currency.IsCurrencyCode() ? currency : throw new ArgumentOutOfRangeException(nameof(currency));
             Amount = amount > 0 ? amount : throw new ArgumentOutOfRangeException(nameof(amount));
         }
 
         protected override IEnumerable<object> GetAtomicValues()
         {
-            yield return CurrencySymbol;
+            yield return Currency;
             yield return Amount;
         }
     }
