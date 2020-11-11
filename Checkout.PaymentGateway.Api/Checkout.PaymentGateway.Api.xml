@@ -44,11 +44,22 @@
             Represents a payment response.
             </summary>
         </member>
+        <member name="T:Checkout.PaymentGateway.Api.Application.PaymentsController">
+            <summary>
+            The payments controller.
+            </summary>
+        </member>
+        <member name="M:Checkout.PaymentGateway.Api.Application.PaymentsController.#ctor(MediatR.IMediator)">
+            <summary>
+            Constructs a PaymentsController instance.
+            </summary>
+            <param name="mediator">A mediator for request/response.</param>
+        </member>
         <member name="M:Checkout.PaymentGateway.Api.Application.PaymentsController.Get(System.Guid)">
             <summary>
-            Retrieves a payment for a given payment ID.
+            Retrieves a specific payment based upon its unique payment ID.
             </summary>
-            <param name="id">The payment ID.</param>
+            <param name="id">A payment ID.</param>
             <returns>An action result of type <see cref="T:Checkout.PaymentGateway.Api.Application.PaymentResponseDto"/>.</returns>
             <example>GET api/payments/C69AD723-F435-47DD-ADCB-4158EE519914</example>
         </member>
@@ -56,7 +67,7 @@
             <summary>
             Submits a payment request.
             </summary>
-            <param name="requestDto">The payment request DTO object.</param>
+            <param name="requestDto">A payment request object.</param>
             <returns>An action result of type <see cref="T:Checkout.PaymentGateway.Api.Application.PaymentRequestResponseDto"/>.</returns>
             <example>POST api/payments</example>
         </member>
@@ -69,6 +80,25 @@
             <summary>
             Handler for the <see cref="T:Checkout.PaymentGateway.Api.Application.SendPaymentRequest"/> command.
             </summary>
+        </member>
+        <member name="T:Checkout.PaymentGateway.Api.Infrastructure.Auth.IApiKeyRepository">
+            <summary>
+            Provides methods for operating on API keys.
+            </summary>
+        </member>
+        <member name="M:Checkout.PaymentGateway.Api.Infrastructure.Auth.IApiKeyRepository.GetApiKeyAsnc(System.String)">
+            <summary>
+            Retrieves an <see cref="T:AspNetCore.Authentication.ApiKey.IApiKey"/> instance for a given key.
+            </summary>
+            <param name="key">An API key.</param>
+        </member>
+        <member name="T:Checkout.PaymentGateway.Api.Infrastructure.Auth.InMemoryApiKeyRepository">
+            <summary>
+            An in-memory repository of API keys for demo purposes.
+            </summary>
+        </member>
+        <member name="M:Checkout.PaymentGateway.Api.Infrastructure.Auth.InMemoryApiKeyRepository.GetApiKeyAsnc(System.String)">
+            <inheritdoc />
         </member>
         <member name="T:Checkout.PaymentGateway.Api.Infrastructure.PaymentMappingProfile">
             <summary>

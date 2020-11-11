@@ -1,5 +1,7 @@
+using AspNetCore.Authentication.ApiKey;
 using AutoMapper;
 using Checkout.PaymentGateway.Api.Application;
+using Checkout.PaymentGateway.Api.Infrastructure.Auth;
 using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Domain.Common;
 using Checkout.PaymentGateway.Infrastructure;
@@ -31,26 +33,19 @@ namespace Checkout.PaymentGateway.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMongoClassMaps();
-            services.Configure<PaymentDbSettings>(Configuration.GetSection("PaymentDb"));
-            services.AddSingleton<IPaymentContext, PaymentContext>();
-            services.AddAutoMapper(typeof(Startup));
-            services.AddMediatR(typeof(Startup));
-            services.AddScoped<IBankingService, MockBankingService>();
+            services
+                .AddMongoClassMaps()
+                .AddApiKeyAuthentication()
+                .AddAutoMapper(typeof(Startup))
+                .AddMediatR(typeof(Startup))
+                .AddLogging()
+                .Configure<PaymentDbSettings>(Configuration.GetSection("PaymentDb"))
+                .AddSingleton<IPaymentContext, PaymentContext>()
+                .AddScoped<IBankingService, MockBankingService>()
+                .AddSwagger()
+                .AddControllers();
 
-            services.AddControllers();
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { 
-                    Title = "Payment Gateway", 
-                    Version = "v1"
-                });
-
-                var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
-                c.IncludeXmlComments(xmlCommentsPath);
-            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +64,7 @@ namespace Checkout.PaymentGateway.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -98,6 +94,59 @@ namespace Checkout.PaymentGateway.Api
             });
 
             return sc;
+        }
+
+        public static IServiceCollection AddApiKeyAuthentication(this IServiceCollection services)
+        {
+            services
+                .AddTransient<IApiKeyRepository, InMemoryApiKeyRepository>()
+                .AddAuthentication(ApiKeyDefaults.AuthenticationScheme)
+                .AddApiKeyInHeader<ApiKeyProvider>(opt =>
+                {
+                    opt.Realm = "Checkout Payment Gateway";
+                    opt.KeyName = "X-API-KEY";
+                });
+
+            return services;
+        }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Payment Gateway",
+                    Version = "v1"
+                });
+
+                var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlCommentsPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
+                c.IncludeXmlComments(xmlCommentsPath);
+
+                c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+                {
+                    Name = "X-API-KEY",
+                    Type = SecuritySchemeType.ApiKey,
+                    In = ParameterLocation.Header
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "ApiKey"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+            });
+
+            return services;
         }
     }
 }

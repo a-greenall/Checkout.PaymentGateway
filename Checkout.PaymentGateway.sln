@@ -3,21 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Api", "Checkout.PaymentGateway.Api\Checkout.PaymentGateway.Api.csproj", "{36FDE28B-F233-416E-9E71-2A0F7CA2ECDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.PaymentGateway.Api", "Checkout.PaymentGateway.Api\Checkout.PaymentGateway.Api.csproj", "{36FDE28B-F233-416E-9E71-2A0F7CA2ECDC}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D0B31578-0DFD-41DB-B1B8-067362D19B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Domain", "Checkout.PaymentGateway.Domain\Checkout.PaymentGateway.Domain.csproj", "{EC457745-34DE-458F-8EF1-D291B4C1F1A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.PaymentGateway.Domain", "Checkout.PaymentGateway.Domain\Checkout.PaymentGateway.Domain.csproj", "{EC457745-34DE-458F-8EF1-D291B4C1F1A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Tests", "Checkout.PaymentGateway.Tests\Checkout.PaymentGateway.Tests.csproj", "{DC942E6F-0455-4723-A0A0-EFF28C53893B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.PaymentGateway.Tests", "Checkout.PaymentGateway.Tests\Checkout.PaymentGateway.Tests.csproj", "{DC942E6F-0455-4723-A0A0-EFF28C53893B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{AFA0ED7D-5B29-4949-9594-6801C840C5BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Extensions", "Checkout.PaymentGateway.Extensions\Checkout.PaymentGateway.Extensions.csproj", "{559D1F58-AF7A-4C40-BE15-63D7171B3370}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.PaymentGateway.Extensions", "Checkout.PaymentGateway.Extensions\Checkout.PaymentGateway.Extensions.csproj", "{559D1F58-AF7A-4C40-BE15-63D7171B3370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Attributes", "Checkout.PaymentGateway.Attributes\Checkout.PaymentGateway.Attributes.csproj", "{1D7F92B0-F882-4481-BDAF-F1B8937ABA19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.PaymentGateway.Attributes", "Checkout.PaymentGateway.Attributes\Checkout.PaymentGateway.Attributes.csproj", "{1D7F92B0-F882-4481-BDAF-F1B8937ABA19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.PaymentGateway.Infrastructure", "Checkout.PaymentGateway.Infrastructure\Checkout.PaymentGateway.Infrastructure.csproj", "{5665FBD8-76FA-4F6E-B6A5-BBD746ADCFB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.PaymentGateway.Infrastructure", "Checkout.PaymentGateway.Infrastructure\Checkout.PaymentGateway.Infrastructure.csproj", "{5665FBD8-76FA-4F6E-B6A5-BBD746ADCFB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4ED23FD-30D8-4EFE-B003-F249EBBD7E24}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

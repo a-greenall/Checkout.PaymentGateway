@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,7 +15,10 @@ namespace Checkout.PaymentGateway.Api.Application
     [Produces("application/json")]
     [Consumes("application/json")]
     [Route("api/payments")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ApiController]
+    [Authorize]
     public class PaymentsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -23,8 +27,7 @@ namespace Checkout.PaymentGateway.Api.Application
         /// Constructs a PaymentsController instance.
         /// </summary>
         /// <param name="mediator">A mediator for request/response.</param>
-        public PaymentsController(
-            IMediator mediator)
+        public PaymentsController(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
@@ -36,9 +39,7 @@ namespace Checkout.PaymentGateway.Api.Application
         /// <returns>An action result of type <see cref="PaymentResponseDto"/>.</returns>
         /// <example>GET api/payments/C69AD723-F435-47DD-ADCB-4158EE519914</example>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<PaymentResponseDto>> Get(Guid id)
         {
             var payment = await _mediator.Send(new GetPayment { PaymentId = id });
@@ -56,8 +57,6 @@ namespace Checkout.PaymentGateway.Api.Application
         /// <returns>An action result of type <see cref="PaymentRequestResponseDto"/>.</returns>
         /// <example>POST api/payments</example>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<PaymentRequestResponseDto>> Post([FromBody] PaymentRequestDto requestDto)
         {
             var response = await _mediator.Send(new SendPaymentRequest { PaymentRequest = requestDto });
