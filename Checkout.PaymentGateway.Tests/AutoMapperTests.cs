@@ -43,7 +43,7 @@ namespace Checkout.PaymentGateway.Tests
         }
 
         [Fact]
-        public void Correctly_map_payment_request_to_payment_response()
+        public void Correctly_map_payment_to_payment_response()
         {
             var config = new MapperConfiguration(cfg => cfg.AddProfile<PaymentMappingProfile>());
             var mapper = config.CreateMapper();

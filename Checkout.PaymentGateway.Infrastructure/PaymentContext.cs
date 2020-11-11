@@ -52,7 +52,7 @@ namespace Checkout.PaymentGateway.Infrastructure
         /// <inheritdoc />
         public Task InsertAsync(Payment payment, CancellationToken token = default)
         {
-            return _payment.InsertOneAsync(payment, null, token);
+            return _payment.InsertOneAsync(payment, new InsertOneOptions { BypassDocumentValidation = false }, token);
         }
     }
 }

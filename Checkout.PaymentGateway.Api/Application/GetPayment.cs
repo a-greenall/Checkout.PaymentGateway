@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Infrastructure;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MongoDB.Driver;
 
 namespace Checkout.PaymentGateway.Api.Application
 {

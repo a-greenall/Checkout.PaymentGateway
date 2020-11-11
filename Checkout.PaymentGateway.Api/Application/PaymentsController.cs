@@ -8,12 +8,21 @@ using System.Threading.Tasks;
 
 namespace Checkout.PaymentGateway.Api.Application
 {
+    /// <summary>
+    /// The payments controller.
+    /// </summary>
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/payments")]
     [ApiController]
     public class PaymentsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
+        /// <summary>
+        /// Constructs a PaymentsController instance.
+        /// </summary>
+        /// <param name="mediator">A mediator for request/response.</param>
         public PaymentsController(
             IMediator mediator)
         {
@@ -21,9 +30,9 @@ namespace Checkout.PaymentGateway.Api.Application
         }
 
         /// <summary>
-        /// Retrieves a payment for a given payment ID.
+        /// Retrieves a specific payment based upon its unique payment ID.
         /// </summary>
-        /// <param name="id">The payment ID.</param>
+        /// <param name="id">A payment ID.</param>
         /// <returns>An action result of type <see cref="PaymentResponseDto"/>.</returns>
         /// <example>GET api/payments/C69AD723-F435-47DD-ADCB-4158EE519914</example>
         [HttpGet("{id}")]
@@ -43,7 +52,7 @@ namespace Checkout.PaymentGateway.Api.Application
         /// <summary>
         /// Submits a payment request.
         /// </summary>
-        /// <param name="requestDto">The payment request DTO object.</param>
+        /// <param name="requestDto">A payment request object.</param>
         /// <returns>An action result of type <see cref="PaymentRequestResponseDto"/>.</returns>
         /// <example>POST api/payments</example>
         [HttpPost]
