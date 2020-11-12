@@ -19,7 +19,7 @@ namespace Checkout.PaymentGateway.Api.Infrastructure
                     new Money(src.Currency, src.Amount),
                     default))
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.SubmittedSuccessfully, opt => opt.Ignore());
+                .ForMember(dest => dest.StatusCode, opt => opt.Ignore());
 
             // Maps from the payment entity, to the response DTO
             CreateMap<Payment, PaymentResponseDto>()
@@ -30,7 +30,7 @@ namespace Checkout.PaymentGateway.Api.Infrastructure
                 .ForMember(dest => dest.ExpiryMonth, opt => opt.MapFrom(src => src.Card.ExpiryMonth))
                 .ForMember(dest => dest.ExpiryYear, opt => opt.MapFrom(src => src.Card.ExpiryYear))
                 .ForMember(dest => dest.PaymentId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.SubmittedSuccessfully, opt => opt.MapFrom(src => src.SubmittedSuccessfully));
+                .ForMember(dest => dest.StatusCode, opt => opt.MapFrom(src => src.StatusCode));
         }
     }
 }

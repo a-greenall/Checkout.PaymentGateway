@@ -1,5 +1,6 @@
 ﻿using Checkout.PaymentGateway.Domain.Common;
 using System;
+using System.Net;
 
 namespace Checkout.PaymentGateway.Domain
 {
@@ -19,9 +20,9 @@ namespace Checkout.PaymentGateway.Domain
         public Money Amount { get; }
 
         /// <summary>
-        /// Whether the payment was submitted successfully.
+        /// The status code indicating whether the payment was successful.
         /// </summary>
-        public bool SubmittedSuccessfully { get; private set; }
+        public HttpStatusCode StatusCode { get; private set; }
 
         public Payment(
             Card card,
@@ -37,11 +38,11 @@ namespace Checkout.PaymentGateway.Domain
         /// Updates the payment after receiving response from the bank service.
         /// </summary>
         /// <param name="paymentId">The received payment ID.</param>
-        /// <param name="successful">Whether the submission to the bank service was successful</param>
-        public void UpdateFromBankResponse(Guid paymentId, bool successful)
+        /// <param name="statusCode">The received status code.</param>
+        public void UpdateFromBankResponse(Guid paymentId, HttpStatusCode statusCode)
         {
             Id = paymentId;
-            SubmittedSuccessfully = successful;
+            StatusCode = statusCode;
         }
     }
 }

@@ -105,7 +105,7 @@ namespace Checkout.PaymentGateway.Tests
 
             var result = await handler.Handle(command, default);
 
-            result.SubmittedSuccessfully.Should().BeTrue();
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
             result.PaymentId.Should().Be(paymentId);
         }
 
@@ -144,7 +144,7 @@ namespace Checkout.PaymentGateway.Tests
 
             var result = await handler.Handle(command, default);
 
-            result.SubmittedSuccessfully.Should().BeFalse();
+            result.StatusCode.Should().NotBe(HttpStatusCode.OK);
             result.PaymentId.Should().Be(paymentId);
         }
     }

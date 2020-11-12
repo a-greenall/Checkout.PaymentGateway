@@ -77,14 +77,94 @@
             Represents a payment request.
             </summary>
         </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestDto.CardNumber">
+            <summary>
+            The payment card number.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestDto.ExpiryMonth">
+            <summary>
+            The payment card expiry month.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestDto.ExpiryYear">
+            <summary>
+            The payment card expiry year.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestDto.Cvv">
+            <summary>
+            The payment card CVV.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestDto.Currency">
+            <summary>
+            The payment currency code.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestDto.Amount">
+            <summary>
+            The payment amount.
+            </summary>
+        </member>
         <member name="T:Checkout.PaymentGateway.Api.Application.PaymentRequestResponseDto">
             <summary>
             Represents a reponse from a payment request.
             </summary>
         </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestResponseDto.PaymentId">
+            <summary>
+            The payment ID.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentRequestResponseDto.StatusCode">
+            <summary>
+            The status code indication whether or not the payment was successful.
+            </summary>
+        </member>
         <member name="T:Checkout.PaymentGateway.Api.Application.PaymentResponseDto">
             <summary>
             Represents a payment response.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.PaymentId">
+            <summary>
+            The payment ID.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.CardNumber">
+            <summary>
+            The payment card number.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.ExpiryMonth">
+            <summary>
+            The payment card expiry month.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.ExpiryYear">
+            <summary>
+            The payment card expiry year.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.Cvv">
+            <summary>
+            The payment card CVV.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.Currency">
+            <summary>
+            The payment currency code.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.Amount">
+            <summary>
+            The payment amount.
+            </summary>
+        </member>
+        <member name="P:Checkout.PaymentGateway.Api.Application.PaymentResponseDto.StatusCode">
+            <summary>
+            The status code indication whether or not the payment was successful.
             </summary>
         </member>
         <member name="T:Checkout.PaymentGateway.Api.Application.PaymentsController">

@@ -3,7 +3,6 @@ using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Infrastructure;
 using MediatR;
 using System;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -43,7 +42,7 @@ namespace Checkout.PaymentGateway.Api.Application
 
             // Map the request to the entity type
             var payment = _mapper.Map<Payment>(request.PaymentRequest);
-            payment.UpdateFromBankResponse(bankResponse.Response, bankResponse.StatusCode == HttpStatusCode.OK);
+            payment.UpdateFromBankResponse(bankResponse.Response, bankResponse.StatusCode);
 
             // TODO - encrypt card number
 
@@ -54,7 +53,7 @@ namespace Checkout.PaymentGateway.Api.Application
             return new PaymentRequestResponseDto
             {
                 PaymentId = payment.Id,
-                SubmittedSuccessfully = payment.SubmittedSuccessfully
+                StatusCode = payment.StatusCode
             };
         }
     }
