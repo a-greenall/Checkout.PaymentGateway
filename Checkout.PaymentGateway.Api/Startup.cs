@@ -117,8 +117,9 @@ namespace Checkout.PaymentGateway.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
+                    Version = "v1",
                     Title = "Payment Gateway",
-                    Version = "v1"
+                    Description = "A demo payment gateway using ASP.NET Core 3",
                 });
 
                 var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
