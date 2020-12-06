@@ -43,7 +43,8 @@ namespace Checkout.PaymentGateway.Api.Application.Commands
 
             // Map the request to the entity type
             var payment = _mapper.Map<Payment>(request.PaymentRequest);
-            payment.UpdateFromBankResponse(bankResponse.Response, bankResponse.StatusCode);
+            payment.StatusCode = bankResponse.StatusCode;
+            payment.Id = bankResponse.Response;
 
             // TODO - encrypt card number
 

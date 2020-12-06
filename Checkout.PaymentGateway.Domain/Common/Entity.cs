@@ -8,7 +8,7 @@ namespace Checkout.PaymentGateway.Domain.Common
         /// The ID of the entity.
         /// </summary>
         /// <remarks>This is a GUID for the purposes of this demo application as it is easy to generate.</remarks>
-        public virtual Guid Id { get; protected set; }
+        public Guid Id { get; set; }
 
         public override bool Equals(object obj)
         {

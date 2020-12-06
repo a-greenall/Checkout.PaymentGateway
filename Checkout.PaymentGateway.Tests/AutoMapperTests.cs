@@ -4,6 +4,7 @@ using Checkout.PaymentGateway.Api.Infrastructure;
 using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Extensions;
 using FluentAssertions;
+using System;
 using Xunit;
 
 namespace Checkout.PaymentGateway.Tests
@@ -49,9 +50,11 @@ namespace Checkout.PaymentGateway.Tests
         {
             var config = new MapperConfiguration(cfg => cfg.AddProfile<PaymentMappingProfile>());
             var mapper = config.CreateMapper();
+            var id = Guid.NewGuid();
             var payment = new Payment(
                 new Card(FAKE_CREDIT_CARD_NO, 6, 25, "123"),
-                new Money("USD", 123));
+                new Money("USD", 123),
+                id);
 
             var dto = mapper.Map<Payment, PaymentResponseDto>(payment);
 
