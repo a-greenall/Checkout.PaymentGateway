@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: Checkout.PaymentGateway.Api/Dockerfile
+    ports:
+      - 8000:80
+      - 8001:443
     depends_on:
       - mongo
 
