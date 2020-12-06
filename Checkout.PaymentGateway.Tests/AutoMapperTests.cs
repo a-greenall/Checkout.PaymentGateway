@@ -10,6 +10,8 @@ namespace Checkout.PaymentGateway.Tests
 {
     public class AutoMapperTests
     {
+        private const string FAKE_CREDIT_CARD_NO = "4916114233264815";
+
         [Fact]
         public void Have_valid_mapping_configuration()
         {
@@ -25,7 +27,7 @@ namespace Checkout.PaymentGateway.Tests
             var dto = new PaymentRequestDto
             {
                 Amount = 999,
-                CardNumber = "1122334455667788",
+                CardNumber = FAKE_CREDIT_CARD_NO,
                 Currency = "GBP",
                 Cvv = "123",
                 ExpiryMonth = 6,
@@ -48,7 +50,7 @@ namespace Checkout.PaymentGateway.Tests
             var config = new MapperConfiguration(cfg => cfg.AddProfile<PaymentMappingProfile>());
             var mapper = config.CreateMapper();
             var payment = new Payment(
-                new Card("1122334455667788", 6, 25, "123"),
+                new Card(FAKE_CREDIT_CARD_NO, 6, 25, "123"),
                 new Money("USD", 123));
 
             var dto = mapper.Map<Payment, PaymentResponseDto>(payment);

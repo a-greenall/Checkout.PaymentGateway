@@ -1,4 +1,5 @@
 ﻿using Checkout.PaymentGateway.Domain.Common;
+using Checkout.PaymentGateway.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -34,7 +35,7 @@ namespace Checkout.PaymentGateway.Domain
             if (string.IsNullOrEmpty(number))
                 throw new ArgumentNullException(nameof(number));
 
-            if (number.Length != 16)
+            if (!number.IsCreditCard())
                 throw new ArgumentOutOfRangeException(nameof(number));
 
             return number;

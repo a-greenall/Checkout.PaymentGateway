@@ -17,6 +17,8 @@ namespace Checkout.PaymentGateway.Tests
 {
     public class GetPaymentTests
     {
+        private const string FAKE_CREDIT_CARD_NO = "4916114233264815";
+
         [Fact]
         public void Not_allow_empty_constructor_parameter_values_in_handler()
         {
@@ -34,7 +36,7 @@ namespace Checkout.PaymentGateway.Tests
 
             // Arrange the payment
             var paymentId = fixture.Freeze<Guid>();
-            var card = new Card("1122334455667788", 12, 20, "123");
+            var card = new Card(FAKE_CREDIT_CARD_NO, 12, 20, "123");
             var amount = new Money("EUR", 123);
             var payment = new Payment(card, amount, paymentId);
 

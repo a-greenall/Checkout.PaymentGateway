@@ -4,6 +4,43 @@
         <name>Checkout.PaymentGateway.Api</name>
     </assembly>
     <members>
+        <member name="T:Checkout.PaymentGateway.Api.Application.Commands.SendPaymentRequest">
+            <summary>
+            Command used to send a payment request.
+            </summary>
+        </member>
+        <member name="T:Checkout.PaymentGateway.Api.Application.Commands.SendPaymentRequestHandler">
+            <summary>
+            Handler for the <see cref="T:Checkout.PaymentGateway.Api.Application.Commands.SendPaymentRequest"/> command.
+            </summary>
+        </member>
+        <member name="T:Checkout.PaymentGateway.Api.Application.Controllers.PaymentsController">
+            <summary>
+            The payments controller.
+            </summary>
+        </member>
+        <member name="M:Checkout.PaymentGateway.Api.Application.Controllers.PaymentsController.#ctor(MediatR.IMediator)">
+            <summary>
+            Constructs a PaymentsController instance.
+            </summary>
+            <param name="mediator">A mediator for request/response.</param>
+        </member>
+        <member name="M:Checkout.PaymentGateway.Api.Application.Controllers.PaymentsController.Get(System.Guid)">
+            <summary>
+            Retrieves a specific payment based upon its unique payment ID.
+            </summary>
+            <param name="id">A payment ID.</param>
+            <returns>An action result of type <see cref="T:Checkout.PaymentGateway.Api.Application.PaymentResponseDto"/>.</returns>
+            <example>GET api/payments/C69AD723-F435-47DD-ADCB-4158EE519914</example>
+        </member>
+        <member name="M:Checkout.PaymentGateway.Api.Application.Controllers.PaymentsController.Post(Checkout.PaymentGateway.Api.Application.PaymentRequestDto)">
+            <summary>
+            Submits a payment request.
+            </summary>
+            <param name="requestDto">A payment request object.</param>
+            <returns>An action result of type <see cref="T:Checkout.PaymentGateway.Api.Application.PaymentRequestResponseDto"/>.</returns>
+            <example>POST api/payments</example>
+        </member>
         <member name="T:Checkout.PaymentGateway.Api.Application.BankResponse`1">
             <summary>
             A model of a possible bank response.
@@ -46,31 +83,6 @@
             </summary>
             <param name="ex"></param>
             <param name="path"></param>
-        </member>
-        <member name="T:Checkout.PaymentGateway.Api.Application.GetPayment">
-            <summary>
-            Query used to retrieve a payment associated with a given ID.
-            </summary>
-        </member>
-        <member name="T:Checkout.PaymentGateway.Api.Application.GetPaymentHandler">
-            <summary>
-            Handler for the <see cref="T:Checkout.PaymentGateway.Api.Application.GetPayment"/> query.
-            </summary>
-        </member>
-        <member name="M:Checkout.PaymentGateway.Api.Application.IBankingService.SubmitPayment(Checkout.PaymentGateway.Api.Application.PaymentRequestDto)">
-            <summary>
-            Submits a payment request to the banking service.
-            </summary>
-            <param name="payment">The requested payment.</param>
-            <returns>A response including the payment ID and status.</returns>
-        </member>
-        <member name="T:Checkout.PaymentGateway.Api.Application.MockBankingService">
-            <summary>
-            A simulated instance of a banking service.
-            </summary>
-        </member>
-        <member name="M:Checkout.PaymentGateway.Api.Application.MockBankingService.SubmitPayment(Checkout.PaymentGateway.Api.Application.PaymentRequestDto)">
-            <inheritdoc />
         </member>
         <member name="T:Checkout.PaymentGateway.Api.Application.PaymentRequestDto">
             <summary>
@@ -167,42 +179,30 @@
             The status code indication whether or not the payment was successful.
             </summary>
         </member>
-        <member name="T:Checkout.PaymentGateway.Api.Application.PaymentsController">
+        <member name="T:Checkout.PaymentGateway.Api.Application.Queries.GetPayment">
             <summary>
-            The payments controller.
+            Query used to retrieve a payment associated with a given ID.
             </summary>
         </member>
-        <member name="M:Checkout.PaymentGateway.Api.Application.PaymentsController.#ctor(MediatR.IMediator)">
+        <member name="T:Checkout.PaymentGateway.Api.Application.Queries.GetPaymentHandler">
             <summary>
-            Constructs a PaymentsController instance.
-            </summary>
-            <param name="mediator">A mediator for request/response.</param>
-        </member>
-        <member name="M:Checkout.PaymentGateway.Api.Application.PaymentsController.Get(System.Guid)">
-            <summary>
-            Retrieves a specific payment based upon its unique payment ID.
-            </summary>
-            <param name="id">A payment ID.</param>
-            <returns>An action result of type <see cref="T:Checkout.PaymentGateway.Api.Application.PaymentResponseDto"/>.</returns>
-            <example>GET api/payments/C69AD723-F435-47DD-ADCB-4158EE519914</example>
-        </member>
-        <member name="M:Checkout.PaymentGateway.Api.Application.PaymentsController.Post(Checkout.PaymentGateway.Api.Application.PaymentRequestDto)">
-            <summary>
-            Submits a payment request.
-            </summary>
-            <param name="requestDto">A payment request object.</param>
-            <returns>An action result of type <see cref="T:Checkout.PaymentGateway.Api.Application.PaymentRequestResponseDto"/>.</returns>
-            <example>POST api/payments</example>
-        </member>
-        <member name="T:Checkout.PaymentGateway.Api.Application.SendPaymentRequest">
-            <summary>
-            Command used to send a payment request.
+            Handler for the <see cref="T:Checkout.PaymentGateway.Api.Application.Queries.GetPayment"/> query.
             </summary>
         </member>
-        <member name="T:Checkout.PaymentGateway.Api.Application.SendPaymentRequestHandler">
+        <member name="M:Checkout.PaymentGateway.Api.Application.Services.IBankingService.SubmitPayment(Checkout.PaymentGateway.Api.Application.PaymentRequestDto)">
             <summary>
-            Handler for the <see cref="T:Checkout.PaymentGateway.Api.Application.SendPaymentRequest"/> command.
+            Submits a payment request to the banking service.
             </summary>
+            <param name="payment">The requested payment.</param>
+            <returns>A response including the payment ID and status.</returns>
+        </member>
+        <member name="T:Checkout.PaymentGateway.Api.Application.Services.MockBankingService">
+            <summary>
+            A simulated instance of a banking service.
+            </summary>
+        </member>
+        <member name="M:Checkout.PaymentGateway.Api.Application.Services.MockBankingService.SubmitPayment(Checkout.PaymentGateway.Api.Application.PaymentRequestDto)">
+            <inheritdoc />
         </member>
         <member name="T:Checkout.PaymentGateway.Api.Infrastructure.Auth.ApiKey">
             <summary>

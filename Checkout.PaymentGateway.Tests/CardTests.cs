@@ -10,6 +10,8 @@ namespace Checkout.PaymentGateway.Tests
 {
     public class CardTests
     {
+        private const string FAKE_CREDIT_CARD_NO = "4916114233264815";
+
         [Fact]
         public void Not_allow_empty_constructor_parameter_values()
         {
@@ -21,26 +23,11 @@ namespace Checkout.PaymentGateway.Tests
         }
 
         [Fact]
-        public void Not_allow_number_length_greater_than_16()
+        public void Not_allow_invalid_card_number()
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Card, string>("number", "112233445566778899");
-
-            Action act = () => fixture.Create<Card>();
-
-            act.Should().Throw<Exception>()
-                .WithInnerException<Exception>()
-                .WithInnerException<ArgumentOutOfRangeException>()
-                .And.ParamName.Should().Be("number");
-        }
-
-        [Fact]
-        public void Not_allow_number_length_less_than_16()
-        {
-            var fixture = new Fixture();
-
-            fixture.ConstructorArgumentFor<Card, string>("number", "11223344556677");
+            fixture.ConstructorArgumentFor<Card, string>("number", "11223344");
 
             Action act = () => fixture.Create<Card>();
 
@@ -55,7 +42,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
+            fixture.ConstructorArgumentFor<Card, string>("number", FAKE_CREDIT_CARD_NO);
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 13);
 
             Action act = () => fixture.Create<Card>();
@@ -71,7 +58,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
+            fixture.ConstructorArgumentFor<Card, string>("number", FAKE_CREDIT_CARD_NO);
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 0);
 
             Action act = () => fixture.Create<Card>();
@@ -87,7 +74,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
+            fixture.ConstructorArgumentFor<Card, string>("number", FAKE_CREDIT_CARD_NO);
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
             fixture.ConstructorArgumentFor<Card, int>("expiryYear", 100);
 
@@ -104,7 +91,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
+            fixture.ConstructorArgumentFor<Card, string>("number", FAKE_CREDIT_CARD_NO);
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
             fixture.ConstructorArgumentFor<Card, int>("expiryYear", 0);
 
@@ -121,7 +108,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
+            fixture.ConstructorArgumentFor<Card, string>("number", FAKE_CREDIT_CARD_NO);
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
             fixture.ConstructorArgumentFor<Card, int>("expiryYear", 20);
             fixture.ConstructorArgumentFor<Card, string>("cvv", "00");
@@ -139,7 +126,7 @@ namespace Checkout.PaymentGateway.Tests
         {
             var fixture = new Fixture();
 
-            fixture.ConstructorArgumentFor<Card, string>("number", "1122334455667788");
+            fixture.ConstructorArgumentFor<Card, string>("number", FAKE_CREDIT_CARD_NO);
             fixture.ConstructorArgumentFor<Card, int>("expiryMonth", 6);
             fixture.ConstructorArgumentFor<Card, int>("expiryYear", 20);
             fixture.ConstructorArgumentFor<Card, string>("cvv", "0000");

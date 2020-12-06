@@ -20,6 +20,8 @@ namespace Checkout.PaymentGateway.Tests
 {
     public class SendPaymentRequestTests
     {
+        private const string FAKE_CREDIT_CARD_NO = "4916114233264815";
+
         [Fact]
         public void Not_allow_empty_constructor_parameter_values_in_handler()
         {
@@ -39,7 +41,7 @@ namespace Checkout.PaymentGateway.Tests
             var dto = new PaymentRequestDto
             {
                 Amount = 999,
-                CardNumber = "1122334455667788",
+                CardNumber = FAKE_CREDIT_CARD_NO,
                 Currency = "GBP",
                 Cvv = "123",
                 ExpiryMonth = 6,
@@ -81,7 +83,7 @@ namespace Checkout.PaymentGateway.Tests
             var dto = new PaymentRequestDto
             {
                 Amount = 999,
-                CardNumber = "1122334455667788",
+                CardNumber = FAKE_CREDIT_CARD_NO,
                 Currency = "USD",
                 Cvv = "123",
                 ExpiryMonth = 6,
@@ -120,7 +122,7 @@ namespace Checkout.PaymentGateway.Tests
             var dto = new PaymentRequestDto
             {
                 Amount = 999,
-                CardNumber = "1122334455667788",
+                CardNumber = FAKE_CREDIT_CARD_NO,
                 Currency = "EUR",
                 Cvv = "123",
                 ExpiryMonth = 6,
