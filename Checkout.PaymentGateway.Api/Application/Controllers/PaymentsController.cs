@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Checkout.PaymentGateway.Api.Application.Commands;
+using Checkout.PaymentGateway.Api.Application.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Checkout.PaymentGateway.Api.Application
+namespace Checkout.PaymentGateway.Api.Application.Controllers
 {
     /// <summary>
     /// The payments controller.
@@ -46,7 +48,7 @@ namespace Checkout.PaymentGateway.Api.Application
 
             if (payment is null)
                 return NotFound();
-            
+
             return payment;
         }
 
@@ -59,8 +61,7 @@ namespace Checkout.PaymentGateway.Api.Application
         [HttpPost]
         public async Task<ActionResult<PaymentRequestResponseDto>> Post([FromBody] PaymentRequestDto requestDto)
         {
-            var response = await _mediator.Send(new SendPaymentRequest { PaymentRequest = requestDto });
-            return response;
+            return await _mediator.Send(new SendPaymentRequest { PaymentRequest = requestDto });
         }
     }
 }

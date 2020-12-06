@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
-namespace Checkout.PaymentGateway.Api.Application
+namespace Checkout.PaymentGateway.Api.Application.Controllers
 {
     [ApiExplorerSettings(IgnoreApi = true)]
     [ApiController]

@@ -1,6 +1,6 @@
 using AspNetCore.Authentication.ApiKey;
 using AutoMapper;
-using Checkout.PaymentGateway.Api.Application;
+using Checkout.PaymentGateway.Api.Application.Services;
 using Checkout.PaymentGateway.Api.Infrastructure.Auth;
 using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Domain.Common;

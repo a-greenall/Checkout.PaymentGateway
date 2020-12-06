@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Checkout.PaymentGateway.Api.Application.Services;
 using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Infrastructure;
 using MediatR;
@@ -6,7 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.Api.Application
+namespace Checkout.PaymentGateway.Api.Application.Commands
 {
     /// <summary>
     /// Command used to send a payment request.

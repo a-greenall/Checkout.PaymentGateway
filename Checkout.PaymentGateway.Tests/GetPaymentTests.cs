@@ -2,7 +2,7 @@
 using AutoFixture.AutoMoq;
 using AutoFixture.Idioms;
 using AutoMapper;
-using Checkout.PaymentGateway.Api.Application;
+using Checkout.PaymentGateway.Api.Application.Queries;
 using Checkout.PaymentGateway.Api.Infrastructure;
 using Checkout.PaymentGateway.Domain;
 using Checkout.PaymentGateway.Infrastructure;

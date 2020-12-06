@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Checkout.PaymentGateway.Api.Application
+namespace Checkout.PaymentGateway.Api.Application.Queries
 {
     /// <summary>
     /// Query used to retrieve a payment associated with a given ID.
@@ -40,9 +40,7 @@ namespace Checkout.PaymentGateway.Api.Application
                 return null;
 
             // Map to the response type
-            var response = _mapper.Map<PaymentResponseDto>(payment);
-
-            return response;
+            return _mapper.Map<PaymentResponseDto>(payment);
         }
     }
 }

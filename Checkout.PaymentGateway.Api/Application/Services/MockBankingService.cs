@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Checkout.PaymentGateway.Api.Application
+namespace Checkout.PaymentGateway.Api.Application.Services
 {
     public interface IBankingService
     {
